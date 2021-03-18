@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CipherApp</string>
+    <string name="CipherApp">Cipher App</string>
+    <string name="Encrypt">Encrypt</string>
+    <string name="Decrypt">Decrypt</string>
+    <string name="Clear">Clear</string>
 </resources>

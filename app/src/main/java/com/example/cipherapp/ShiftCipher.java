@@ -1,22 +1,30 @@
 package com.example.cipherapp;
 
 public class ShiftCipher implements Cipher{
-    String [] alphabet = new String[26];
-    String [] cipherbet = new String[26];
-    String name;
-    String message;
+    final int lengthOfAlphabet = 26;
+    String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    String cipherbet = "";
+    String name = "";
+    String encryptedMessage = "";
+    String decryptedMessage = "";
     int shiftAmount;
 
     //initiatizes ShiftCipher bet
-    ShiftCipher( String name, int shiftAmount, String message )
+    ShiftCipher( int shiftAmount )
     {
-        this.name = name;
+        this.name = "shift";
         this.shiftAmount = shiftAmount;
-        this.message = message;
+
+        for ( int i = 0; i < lengthOfAlphabet; i ++ )
+        {
+            // System.out.println( cipherbet + " " + (shiftAmount + i) % lengthOfAlphabet + " " + alphabet.substring((shiftAmount + i) % lengthOfAlphabet,((shiftAmount + i) % lengthOfAlphabet) + 1));
+            cipherbet += alphabet.substring((shiftAmount + i) % lengthOfAlphabet,((shiftAmount + i) % lengthOfAlphabet) + 1);
+        }
+
+
     }
 
     //get's the user information: kind of cipher and message, decrypt or encrypt
-    @Override
     public void getUserInput()
     {
         System.out.println("will get user input from text fields and then initialize a shft cipher object");
@@ -24,23 +32,61 @@ public class ShiftCipher implements Cipher{
 
     //displays for the user the way that th cipher works
     //in android studio will access text fields and change them to show steps
-    @Override
     public void displaySteps()
     {
         System.out.println("steps");
     }
 
     //encrypts the message
-    @Override
-    public void encrypt( String message )
+    public String encrypt( String message )
     {
-//        return message;
+        message.toUpperCase();
+        // System.out.println(message);
+        encryptedMessage="";
+        for ( int i = 0; i < message.length(); i++ )
+        {
+
+            if ( message.substring(i,i+1).equals(" "))
+            {
+                encryptedMessage += " ";
+            }
+            else
+            {
+                encryptedMessage += cipherbet.substring(alphabet.indexOf(message.substring(i,i+1), 0),alphabet.indexOf(message.substring(i,i+1), 0)+1);
+            }
+
+        }
+        // System.out.println(encryptedMessage);
+        return encryptedMessage;
     }
 
     //decrypts the message
-    @Override
-    public void decrypt( String message )
+    public String decrypt( String message )
     {
-//        return message;
+        message.toUpperCase();
+
+        System.out.println(message);
+        decryptedMessage="";
+        for ( int i = 0; i < message.length(); i++ )
+        {
+
+            if ( message.substring(i,i+1).equals(" "))
+            {
+                decryptedMessage += " ";
+            }
+            else
+            {
+                decryptedMessage += alphabet.substring(cipherbet.indexOf(message.substring(i,i+1), 0),cipherbet.indexOf(message.substring(i,i+1), 0)+1);
+            }
+
+        }
+        // System.out.println(decryptedMessage);
+        return decryptedMessage;
     }
+//
+//    public void clear()
+//    {
+//        encryptedMessage = "";
+//        decryptedMessage = "";
+//    }
 }

@@ -11,8 +11,8 @@ public interface Cipher
     void displaySteps();
 
     //encrypts the message
-    void encrypt( String message );
+    String encrypt( String message );
 
     //decrypts the message
-    void decrypt( String message );
+    String decrypt( String message );
 }
