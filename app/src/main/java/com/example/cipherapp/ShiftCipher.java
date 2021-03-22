@@ -1,8 +1,8 @@
 package com.example.cipherapp;
 
 public class ShiftCipher implements Cipher{
-    final int lengthOfAlphabet = 26;
-    String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    final int lengthOfAlphabet = 52;
+    String alphabet = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
     String cipherbet = "";
     String name = "";
     String encryptedMessage = "";
@@ -40,19 +40,18 @@ public class ShiftCipher implements Cipher{
     //encrypts the message
     public String encrypt( String message )
     {
-        message.toUpperCase();
-        // System.out.println(message);
+        String nextChar = "";
         encryptedMessage="";
         for ( int i = 0; i < message.length(); i++ )
         {
-
-            if ( message.substring(i,i+1).equals(" "))
+            nextChar = message.substring(i,i+1);
+            if ( nextChar.equals(" "))
             {
                 encryptedMessage += " ";
             }
             else
             {
-                encryptedMessage += cipherbet.substring(alphabet.indexOf(message.substring(i,i+1), 0),alphabet.indexOf(message.substring(i,i+1), 0)+1);
+                encryptedMessage += cipherbet.substring(alphabet.indexOf(nextChar, 0),alphabet.indexOf(nextChar, 0)+1);
             }
 
         }
@@ -63,30 +62,23 @@ public class ShiftCipher implements Cipher{
     //decrypts the message
     public String decrypt( String message )
     {
-        message.toUpperCase();
-
-        System.out.println(message);
+        String nextChar = "";
         decryptedMessage="";
         for ( int i = 0; i < message.length(); i++ )
         {
-
-            if ( message.substring(i,i+1).equals(" "))
+            nextChar = message.substring(i,i+1);
+            if ( nextChar.equals(" "))
             {
                 decryptedMessage += " ";
             }
             else
             {
-                decryptedMessage += alphabet.substring(cipherbet.indexOf(message.substring(i,i+1), 0),cipherbet.indexOf(message.substring(i,i+1), 0)+1);
+                decryptedMessage += alphabet.substring(cipherbet.indexOf(nextChar, 0),cipherbet.indexOf(nextChar, 0)+1);
             }
 
         }
         // System.out.println(decryptedMessage);
         return decryptedMessage;
     }
-//
-//    public void clear()
-//    {
-//        encryptedMessage = "";
-//        decryptedMessage = "";
-//    }
+
 }
